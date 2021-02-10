@@ -35,5 +35,18 @@ QUnit.module('Тестируем функцию plain', function () {
 
 	QUnit.test('Работает с элементами разных типов', function (assert) {
 		assert.deepEqual(plain([ [ 'abcde' ], [ [ 'f' ], [ null, false ], [ NaN, NaN ], NaN ], -Infinity ]), [ 'abcde', 'f', null, false, NaN, NaN, NaN, -Infinity ]);
+    });
+    
+	QUnit.test('Работает с объектами', function (assert) {
+		assert.deepEqual(plain([{name: 'Jordan', age:30 }]), [{name: 'Jordan', age: 30}], 'Работает с одним объектом');
+		assert.deepEqual(plain([{name: 'Potter'}, {name: 'Harry'}]), [{name: 'Potter'}, {name: 'Harry'}], 'Работает с несколькими объектами');
+    });
+    
+	QUnit.test('Работает с примитивами', function (assert) {
+		assert.deepEqual(plain([true, false]),[true,false],'Работает с boolean');
+		assert.deepEqual(plain(['hello', 'world']), ['hello', 'world'], 'Работает со string');
+		assert.deepEqual(plain([null]),[null], 'Работает с null');
+		assert.deepEqual(plain([undefined]), [undefined], 'Работает с undefined');
+		assert.deepEqual(plain([Symbol.for('id')]), [Symbol.for('id')], 'Работает с symbol');
 	});
 });
