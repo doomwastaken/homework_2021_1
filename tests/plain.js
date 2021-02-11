@@ -49,4 +49,13 @@ QUnit.module('Тестируем функцию plain', function () {
 		assert.deepEqual(plain([undefined]), [undefined], 'Работает с undefined');
 		assert.deepEqual(plain([Symbol.for('id')]), [Symbol.for('id')], 'Работает с symbol');
 	});
+	QUnit.test('Работает с некоррекным типом данных', function (assert) {
+		assert.deepEqual(plain(false), [], 'boolean');
+		assert.deepEqual(plain('string'), [], 'string');
+		assert.deepEqual(plain(), [], 'do nothing')
+		assert.deepEqual(plain(null), [], 'null');
+		assert.deepEqual(plain(Symbol('xd')), [], 'symbol');
+		assert.deepEqual(plain(undefined), [], 'undefined');
+
+	})
 });
