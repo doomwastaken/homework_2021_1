@@ -10,6 +10,6 @@
 
 const plain = array => { 
   return Array.isArray(array) ?
-      array.flat(Infinity) : []; 
+    array.flat(Infinity) : []; 
 };
 
